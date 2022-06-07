@@ -1,23 +1,26 @@
 <p style="color: green"><%= notice %></p>
 
-<div>
-  <%= link_to "Edit this line", edit_line_path(@line) %> |
-  <%= link_to "Back to lines", lines_path %>
-
-  <%= button_to "Destroy this line", @line, method: :delete %>
+<div class="flex justify-between">
+  <%= render @line %>
+  
+  <div class='flex gap-1'>
+    <%= link_to "Agregar marca", new_line_brand_path(@line), class:'border bg-green-300 px-2 py-1' %>
+    <%= link_to "Editar linea", edit_line_path(@line), class:'border px-2 py-1 bg-gray-100' %>
+    <%= link_to "Volver a lineas", lines_path, class:'border px-2 py-1 bg-gray-100' %>
+    <%= button_to "Borrar linea", @line, method: :delete, class:'border px-2 py-1 bg-red-300' %>
+  </div>
 </div>
 
-<%= render @line %>
 
-<% if @brands.empty? %>
-  <p>No brands yet.</p>
-<% else %>
-  <% @brands.each do |brand| %>
-    <%= render brand  %>
-    <p>
-      <%= link_to "Show this brand", line_brand_path(@line, brand) %>
-    </p>
+<div class='flex flex-col mt-2'>
+  <% if @brands.empty? %>
+    <p>No existen marcas agregadas</p>
+  <% else %>
+    <% @brands.each do |brand| %>
+      <div class="flex border even:bg-slate-200">
+        <%= render brand  %>
+        <%= link_to "Ir a marca", line_brand_path(@line, brand), class:'pointer-cursor px-2 py-1 bg-gray-100' %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
-<br/>
-<%= link_to "New brand", new_line_brand_path(@line) %>
+</div>
