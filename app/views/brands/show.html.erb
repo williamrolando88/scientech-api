@@ -6,5 +6,5 @@
   <%= link_to "Edit this brand", edit_line_brand_path(@line, @brand) %> |
   <%= link_to "Back to line", line_path(@line) %>
 
-  <%= button_to "Destroy this brand", [@line, @brand], method: :delete %>
+  <%= button_to "Destroy this brand", line_brand_path(@line, @brand), method: :delete %>
 </div>
