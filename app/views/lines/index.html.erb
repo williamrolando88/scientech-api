@@ -5,9 +5,9 @@
   <%= link_to "Agregar Linea", new_line_path, class:'border bg-green-300 px-2 py-1' %>
 </div>
 
-<div id="lines">
+<div id="lines" class='flex flex-col mt-2'>
   <% @lines.each do |line| %>
-    <div class='flex border-2 gap-2'>
+    <div class='flex border-2 even:bg-slate-200'>
       <%= render line %>
       <%= link_to "Abrir", line, class:'pointer-cursor px-2 py-1 bg-gray-100' %>
     </div>
