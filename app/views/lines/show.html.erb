@@ -1,14 +1,23 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @line %>
-
-<% @brands.each do |brand| %>
-  <%= render brand  %>
-<% end %>
-
 <div>
   <%= link_to "Edit this line", edit_line_path(@line) %> |
   <%= link_to "Back to lines", lines_path %>
 
   <%= button_to "Destroy this line", @line, method: :delete %>
 </div>
+
+<%= render @line %>
+
+<% if @brands.empty? %>
+  <p>No brands yet.</p>
+<% else %>
+  <% @brands.each do |brand| %>
+    <%= render brand  %>
+    <p>
+      <%= link_to "Show this brand", line_brand_path(@line, brand) %>
+    </p>
+  <% end %>
+<% end %>
+<br/>
+<%= link_to "New brand", new_line_brand_path(@line) %>
