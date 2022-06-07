@@ -1,10 +1,6 @@
 class BrandsController < ApplicationController
   before_action :set_brand, only: %i[ show edit update destroy ]
-
-  # GET /brands or /brands.json
-  def index
-    @brands = Brand.all
-  end
+  before_action :set_line
 
   # GET /brands/1 or /brands/1.json
   def show
@@ -13,7 +9,6 @@ class BrandsController < ApplicationController
   # GET /brands/new
   def new
     @brand = Brand.new
-    @line = Line.find(params[:line_id])
   end
 
   # GET /brands/1/edit
@@ -22,9 +17,8 @@ class BrandsController < ApplicationController
 
   # POST /brands or /brands.json
   def create
-    @line = Line.find(params[:line_id])
     @brand = Brand.new(brand_params)
-    @brand.line_id = params[:line_id]
+    @brand.line_id = @line.id
 
     respond_to do |format|
       if @brand.save
@@ -55,7 +49,7 @@ class BrandsController < ApplicationController
     @brand.destroy
 
     respond_to do |format|
-      format.html { redirect_to brands_url, notice: "Brand was successfully destroyed." }
+      format.html { redirect_to line_url(@line), notice: "Brand was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -64,6 +58,10 @@ class BrandsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_brand
       @brand = Brand.find(params[:id])
+    end
+
+    def set_line
+      @line = Line.find(params[:line_id])
     end
 
     # Only allow a list of trusted parameters through.
