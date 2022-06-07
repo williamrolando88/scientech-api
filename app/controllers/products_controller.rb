@@ -1,10 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
-
-  # GET /products or /products.json
-  def index
-    @products = Product.all
-  end
+  before_action :set_parent_tables
 
   # GET /products/1 or /products/1.json
   def show
@@ -61,6 +57,11 @@ class ProductsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
+    end
+
+    def set_parent_tables
+      @line = Line.find(params[:line_id])
+      @brand = Brand.find(params[:brand_id])
     end
 
     # Only allow a list of trusted parameters through.
