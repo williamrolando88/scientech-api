@@ -8,6 +8,7 @@ class LinesController < ApplicationController
 
   # GET /lines/1 or /lines/1.json
   def show
+    @brands = @line.brands
   end
 
   # GET /lines/new

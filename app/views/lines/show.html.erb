@@ -2,6 +2,10 @@
 
 <%= render @line %>
 
+<% @brands.each do |brand| %>
+  <%= render brand  %>
+<% end %>
+
 <div>
   <%= link_to "Edit this line", edit_line_path(@line) %> |
   <%= link_to "Back to lines", lines_path %>

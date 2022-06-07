@@ -1,3 +1,3 @@
 class Line < ApplicationRecord
-  has_many :lines
+  has_many :brands
 end
