@@ -1,22 +1,22 @@
 <div id="<%= dom_id product %>">
-  <p>
-    <strong>Name:</strong>
-    <%= product.name %>
-  </p>
+  <div class='grid grid-cols-4 gap-2'>
+    <strong class='text-right col-span-1'>Nombre:</strong>
+    <p class='col-span-3'>
+      <%= product.name %>
+    </p>
+    <strong class='text-right col-span-1'>Descripcion:</strong>
+    <p class='col-span-3'>
+      <%= product.description %>
+    </p>
+    <strong class='text-right col-span-1'>Publicado:</strong>
+    <span class='flex items-center'>
+      <input type="checkbox" class='col-span-3' checked=<%= product.published %> />
+    </span>
 
-  <p>
-    <strong>Description:</strong>
-    <%= product.description %>
-  </p>
-
-  <p>
-    <strong>Published:</strong>
-    <%= product.published %>
-  </p>
-
-  <p>
+  </div>
+  <div class='border'>
     <strong>Image:</strong>
-    <%= product.image %>
-  </p>
+    <img class='m-4' src=<%= product.image %> alt="">
+  </div>
 
 </div>

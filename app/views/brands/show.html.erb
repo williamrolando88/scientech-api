@@ -6,7 +6,7 @@
     <%= link_to "Agregar producto", new_line_brand_product_path(@line, @brand), class:'border px-2 py-1 bg-green-300' %>
     <%= link_to "Editar marca", edit_line_brand_path(@line, @brand), class:'border px-2 py-1 bg-gray-100' %>
     <%= link_to "Volver a marcas", line_path(@line), class:'border px-2 py-1 bg-gray-100' %>
-    <%= button_to "Destroy this brand", line_brand_path(@line, @brand), method: :delete, class:'border px-2 py-1 bg-red-300' %>
+    <%= button_to "Borrar marca", line_brand_path(@line, @brand), method: :delete, class:'border px-2 py-1 bg-red-300' %>
   </div>
 </div>
 
