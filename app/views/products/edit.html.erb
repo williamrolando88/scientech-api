@@ -3,8 +3,4 @@
 <%= render "form", product: @product %>
 
 <br>
-
-<div>
-  <%= link_to "Show this product", line_brand_product_path(@line, @brand, @product) %> |
-  <%= link_to "Back to products", line_brand_path(@line, @brand) %>
-</div>
+<%= link_to "Cancelar", line_brand_product_path(@line, @brand, @product), class:'border px-2 py-1 bg-red-300' %>

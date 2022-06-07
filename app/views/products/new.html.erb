@@ -1,9 +1,6 @@
-<h1>New product</h1>
+<h1>Agregar producto</h1>
 
 <%= render "form", product: @product %>
 
 <br>
-
-<div>
-  <%= link_to "Back to products", line_brand_path(@line, @brand) %>
-</div>
+<%= link_to "Cancelar", line_brand_path(@line, @brand), class:'border px-2 py-1 bg-red-300' %>
