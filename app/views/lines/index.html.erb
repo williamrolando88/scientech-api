@@ -2,18 +2,14 @@
 
 <div class="flex justify-between">  
   <h1 class='text-2xl font-bold'>Lineas de productos</h1>
-  <div class='border bg-green-500 px-2 py-1'>
-    <%= link_to "Agregar Linea", new_line_path %>
-  </div>
+  <%= link_to "Agregar Linea", new_line_path, class:'border bg-green-500 px-2 py-1' %>
 </div>
 
 <div id="lines">
   <% @lines.each do |line| %>
     <div class='flex border-2 gap-2'>
       <%= render line %>
-      <div class='pointer-cursor px-2 py-1 bg-gray-100'>
-        <%= link_to "Abrir", line %>
-      </div>
+      <%= link_to "Abrir", line, class:'pointer-cursor px-2 py-1 bg-gray-100' %>
     </div>
   <% end %>
 </div>
