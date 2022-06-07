@@ -1,14 +1,20 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Lines</h1>
+<div class="flex justify-between">  
+  <h1 class='text-2xl font-bold'>Lineas de productos</h1>
+  <div class='border bg-green-500 px-2 py-1'>
+    <%= link_to "Agregar Linea", new_line_path %>
+  </div>
+</div>
 
 <div id="lines">
   <% @lines.each do |line| %>
-    <%= render line %>
-    <p>
-      <%= link_to "Show this line", line %>
-    </p>
+    <div class='flex border-2 gap-2'>
+      <%= render line %>
+      <div class='pointer-cursor px-2 py-1 bg-gray-100'>
+        <%= link_to "Abrir", line %>
+      </div>
+    </div>
   <% end %>
 </div>
 
-<%= link_to "New line", new_line_path %>
