@@ -10,7 +10,11 @@
     </p>
     <strong class='text-right col-span-1'>Publicado:</strong>
     <span class='flex items-center'>
-      <input type="checkbox" class='col-span-3' checked=<%= product.published %> />
+      <% if product.published %>
+        Si
+      <% else %>
+        No
+      <% end %>
     </span>
 
   </div>
