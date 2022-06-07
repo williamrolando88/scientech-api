@@ -1,0 +1,28 @@
+<p style="color: green"><%= notice %></p>
+<%= render @line %>
+<div class="flex justify-between">
+  <%= render @brand %>
+  <div class='flex gap-1'>
+    <%= link_to "Agregar producto", new_line_brand_product_path(@line, @brand), class:'border px-2 py-1 bg-green-300' %>
+    <%= link_to "Editar marca", edit_line_brand_path(@line, @brand), class:'border px-2 py-1 bg-gray-100' %>
+    <%= link_to "Volver a marcas", line_path(@line), class:'border px-2 py-1 bg-gray-100' %>
+    <%= button_to "Borrar marca", line_brand_path(@line, @brand), method: :delete, class:'border px-2 py-1 bg-red-300' %>
+  </div>
+</div>
+
+
+<div class='flex flex-col mt-2'>
+<% if @products.empty? %>
+  <p>No se han agregado productos</p>
+<% else %>
+  <% @products.each do |product| %>
+    <div class="flex border even:bg-slate-200">
+      <h4 class='grow font-semibold text-lg'>
+      <em class='text-sm font-thin'>Nombre de producto:</em>
+      <%= product.name %>
+      </h4>
+      <%= link_to "Ir a producto", line_brand_product_path(@line, @brand, product), class:'pointer-cursor px-2 py-1 bg-gray-100' %>
+    </div>
+  <% end %>
+<% end %>
+</div>

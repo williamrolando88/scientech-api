@@ -1,0 +1,35 @@
+<%= form_with model: [@line, @brand, product] do |form| %>
+  <% if product.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% product.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="flex flex-col gap-2">
+    <div>
+      <%= form.label :name, style: "display: block" %>
+      <%= form.text_field :name, class:'border px-2 py-1' %>
+    </div>
+    <div>
+      <%= form.label :description, style: "display: block" %>
+      <%= form.text_area :description, class:'border px-2 py-1' %>
+    </div>
+    <div>
+      <%= form.label :published, style: "display: block" %>
+      <%= form.check_box :published %>
+    </div>
+    <div>
+      <%= form.label :image, style: "display: block" %>
+      <%= form.file_field :image, accept: 'image/*' %>
+    </div>
+    <div class='border w-fit px-2 py-1 bg-green-300'>
+      <%= form.submit %>
+    </div>
+  </div>
+<% end %>

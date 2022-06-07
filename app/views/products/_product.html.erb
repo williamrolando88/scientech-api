@@ -1,0 +1,26 @@
+<div id="<%= dom_id product %>">
+  <div class='grid grid-cols-4 gap-2'>
+    <strong class='text-right col-span-1'>Nombre:</strong>
+    <p class='col-span-3'>
+      <%= product.name %>
+    </p>
+    <strong class='text-right col-span-1'>Descripcion:</strong>
+    <p class='col-span-3'>
+      <%= product.description %>
+    </p>
+    <strong class='text-right col-span-1'>Publicado:</strong>
+    <span class='flex items-center'>
+      <% if product.published %>
+        Si
+      <% else %>
+        No
+      <% end %>
+    </span>
+
+  </div>
+  <div class='border'>
+    <strong>Image:</strong>
+    <img class='m-4' src=<%= product.image %> alt="">
+  </div>
+
+</div>

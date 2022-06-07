@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+<div class="flex justify-between items-center">
+  <div class="flex flex-col">
+    <%= render @line %>
+    <%= render @brand %>
+  </div>
+  <div class='flex gap-1'>
+    <%= link_to "Editar producto", edit_line_brand_product_path(@line, @brand, @product), class:'border px-2 py-1 bg-gray-100' %>
+    <%= link_to "Volver productos", line_brand_path(@line, @brand), class:'border px-2 py-1 bg-gray-100' %>
+    <%= button_to "Borrar producto", line_brand_product_path(@line, @brand, @product), method: :delete, class:'border px-2 py-1 bg-red-300' %>
+  </div>
+</div>
+
+<%= render @product %>
+
