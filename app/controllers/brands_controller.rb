@@ -13,6 +13,7 @@ class BrandsController < ApplicationController
   # GET /brands/new
   def new
     @brand = Brand.new
+    @line = Line.find(params[:line_id])
   end
 
   # GET /brands/1/edit
@@ -21,11 +22,13 @@ class BrandsController < ApplicationController
 
   # POST /brands or /brands.json
   def create
+    @line = Line.find(params[:line_id])
     @brand = Brand.new(brand_params)
+    @brand.line_id = params[:line_id]
 
     respond_to do |format|
       if @brand.save
-        format.html { redirect_to brand_url(@brand), notice: "Brand was successfully created." }
+        format.html { redirect_to line_path(@line), notice: "Brand was successfully created." }
         format.json { render :show, status: :created, location: @brand }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +41,7 @@ class BrandsController < ApplicationController
   def update
     respond_to do |format|
       if @brand.update(brand_params)
-        format.html { redirect_to brand_url(@brand), notice: "Brand was successfully updated." }
+        format.html { redirect_to line_url(@line), notice: "Brand was successfully updated." }
         format.json { render :show, status: :ok, location: @brand }
       else
         format.html { render :edit, status: :unprocessable_entity }
