@@ -19,8 +19,12 @@
 
   </div>
   <div class='border'>
-    <strong>Image:</strong>
-    <img class='m-4' src=<%= product.image %> alt="">
+    <strong>Imagen:</strong>
+    <% if product.image.attached? %>
+      <%= link_to image_tag(product.image), product.image %>
+    <% else %>
+      <span>No existe una imagen disponible</span>
+    <% end %>
   </div>
 
 </div>
