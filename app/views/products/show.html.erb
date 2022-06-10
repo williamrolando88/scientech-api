@@ -7,7 +7,7 @@
   <div class='flex gap-1'>
     <%= link_to "Editar producto", edit_line_brand_product_path(@line, @brand, @product), class:'border px-2 py-1 bg-gray-100' %>
     <%= link_to "Volver productos", line_brand_path(@line, @brand), class:'border px-2 py-1 bg-gray-100' %>
-    <%= button_to "Borrar producto", line_brand_product_path(@line, @brand, @product), method: :delete, class:'border px-2 py-1 bg-red-300' %>
+    <%= button_to "Borrar producto", line_brand_product_path(@line, @brand, @product), method: :delete, class:'border px-2 py-1 bg-red-300', data: { confirm:'Aguanta!! vas a borrar un producto, estas loco tu!'} %>
   </div>
 </div>
 
