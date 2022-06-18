@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+  namespace :api do
+    namespace :v1 do
+      resources :users
+    end
+  end
   resources :lines do
     resources :brands, except:[:index] do
       resources :products, except:[:index]
