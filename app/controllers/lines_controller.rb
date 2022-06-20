@@ -1,4 +1,5 @@
 class LinesController < ApplicationController
+  skip_before_action :authenticate_request
   before_action :set_line, only: %i[ show edit update destroy ]
 
   # GET /lines or /lines.json
