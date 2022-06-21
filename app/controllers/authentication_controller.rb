@@ -1,11 +1,12 @@
 class AuthenticationController < ApiController
+  include JsonWebToken
   skip_before_action :authenticate_request
   
   # POST /auth/login
   def login
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
-      token = JsonWebToken.encode({ user_id: user.id, role: user.role })
+      token = jwt_encode( user_id: user.id, role: user.role)
       render json: { token: token }, status: :ok
     else
       render json: { error: 'Invalid email or password' }, status: :unauthorized
