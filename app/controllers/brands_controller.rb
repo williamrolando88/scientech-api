@@ -1,5 +1,4 @@
 class BrandsController < ApplicationController
-  skip_before_action :authenticate_request
   before_action :set_brand, only: %i[ show edit update destroy ]
   before_action :set_line
 
