@@ -2,12 +2,11 @@ Rails.application.routes.draw do
 
   Rails.application.routes.draw do
     post 'login', to: 'authentication#login'
-    post 'signup', to: 'authentication#sign_up'
   end
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :users, only: [:index, :show, :update, :destroy]
+      resources :users, except: [:new, :edit]
     end
   end
   resources :lines do
