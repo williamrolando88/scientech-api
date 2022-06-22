@@ -30,5 +30,12 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
+
+    return unless user.present?
+
+    can [:read, :update], User, id: user.id
+    return unless user.role == 'admin'
+
+    can :manage, User
   end
 end
