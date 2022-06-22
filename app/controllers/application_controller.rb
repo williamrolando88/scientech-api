@@ -1,6 +1,18 @@
 class ApplicationController < ActionController::Base
   include JsonWebToken
 
+  # Override default current_ability function from cancancan gem
+  def current_ability
+    @current_ability ||= Ability.new(@current_user)
+  end
+
+  # Override dafault message for AccessDenied exception of cancancan gem
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.json { head :forbidden }
+    end
+  end
+
   private
 
   def authenticate_request
