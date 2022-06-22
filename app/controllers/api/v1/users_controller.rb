@@ -1,4 +1,5 @@
 class Api::V1::UsersController < ApiController
+  load_and_authorize_resource
   skip_before_action :authenticate_request, only: [:create] if User.all.empty?
 
   # GET /users
@@ -36,7 +37,7 @@ class Api::V1::UsersController < ApiController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    render status: :no_content
+    render json: { message: 'User was successfully deleted.' }, status: :no_content
   end
 
   private
