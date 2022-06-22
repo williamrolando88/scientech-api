@@ -1,4 +1,6 @@
 class Api::V1::UsersController < ApiController
+  skip_before_action :authenticate_request, only: [:create] if User.all.empty?
+
   # GET /users
   def index
     @users = User.all
@@ -18,7 +20,7 @@ class Api::V1::UsersController < ApiController
       render json: @user, status: :created
     else
       render json: { errors: @user.errors.full_messages },
-             status: :unprocessible_entity
+             status: :unprocessable_entity
     end
   end
 
@@ -27,13 +29,14 @@ class Api::V1::UsersController < ApiController
     return if @user.update(user_params)
 
     render json: { errors: @user.errors.full_messages },
-           status: :unprocessible_entity
+           status: :unprocessable_entity
   end
 
   # DELETE /users/{username}
   def destroy
     @user = User.find(params[:id])
     @user.destroy
+    render status: :no_content
   end
 
   private
