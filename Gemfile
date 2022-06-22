@@ -75,3 +75,5 @@ gem "rspec-rails", "~> 5.1"
 gem "aws-sdk-s3", require: false
 gem 'jwt'
 
+
+gem "cancancan", "~> 3.3"
