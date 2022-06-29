@@ -10,20 +10,25 @@ class Ability
     can :read, Product
 
     # Logged user authorization
-    return unless user.present?
+    if user.present?
+      can [:read, :update], User, id: user.id
+    end
 
-    can [:read, :update], User, id: user.id
+    # User authorization
+    if user.role == 'user'
 
-    # Admin authorization
-    return unless user.role == 'admin'
+    end
 
-    can :manage, User
-    cannot :manage, User, user.role == 'super_user'
+    # Manager authorization
+    if user.role == 'manager'
+      can :manage, User
+      cannot :destroy, User, user.role == 'manager'
+    end 
 
     # Super user authorization
-    return unless user.role == 'super_user'
-
-    can :manage, :all
-    cannot :delete, User, user.role == 'super_user'
+    if user.role == 'admin'
+      can :manage, :all
+      cannot :destroy, User, id: user.id
+    end
   end
 end
