@@ -1,6 +1,5 @@
 class Api::V1::UsersController < ApiController
   load_and_authorize_resource
-  skip_before_action :authenticate_request, only: [:create] if User.all.empty?
 
   # GET /users
   def index
@@ -17,6 +16,13 @@ class Api::V1::UsersController < ApiController
   # POST /users
   def create
     @user = User.new(user_params)
+
+    unless can_set_this_role?(@current_user, @user.role)
+      render json: { errors: 'User cannot be created' },
+             status: :unauthorized
+      return
+    end
+
     if @user.save
       render json: @user, status: :created
     else
@@ -27,6 +33,12 @@ class Api::V1::UsersController < ApiController
 
   # PUT /users/{username}
   def update
+    unless can_set_this_role?(@current_user, @user.role)
+      render json: { errors: 'User cannot be updated' },
+             status: :unauthorized
+      return
+    end
+
     return if @user.update(user_params)
 
     render json: { errors: @user.errors.full_messages },
@@ -44,5 +56,15 @@ class Api::V1::UsersController < ApiController
 
   def user_params
     params.permit(:name, :role, :email, :password, :avatar)
+  end
+
+  def can_set_this_role?(user, desired_role)
+    authorized_roles = %w(admin, manager)
+    available_roles = %w(manager, user)
+
+    if authorized_roles.include?(user.role)
+      return true if available_roles.include?(desired_role)
+      return false
+   end
   end
 end
